@@ -3,7 +3,11 @@
 # an expression to each item in an iterable (like a list, tuple, or range),
 # optionally filtering elements (ie. if-condition).
 # General Syntax - [expression for item in iterable if condition].
-
+'''
+A list comprehension consists of brackets containing an expression followed by a for clause,
+then zero or more for or if clauses. The result will be a new list resulting from 
+evaluating the expression in the context of the for and if clauses which follow it.
+'''
 #--------------------------------------------------------------------------------
 # This is how below program works.
 # Takes x from range(5)
