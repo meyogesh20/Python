@@ -59,17 +59,63 @@ even_squares = [x**2 for x in range(10) if x % 2 == 0]
 print(even_squares)     # Output: [0, 4, 16, 36, 64]
 
 ''' 5. Read a file and strip newlines '''
-lines = [line.strip() for line in open("file.txt")]
-print(lines)
+#lines = [line.strip() for line in open("file.txt")]
+#print(lines)
 
 ''' 6. Dictionary to list of key-value strings '''
 d = {'a': 1, 'b': 2}
 kv_strings = [f"{k}={v}" for k, v in d.items()]
 print(kv_strings)  # Output: ['a=1', 'b=2']
 
+''' 7. Create a list of 2-tuples like (number, square) '''
+# the tuple must be parenthesized, otherwise an error is raised
+# [x, x**2 for x in range(6)] - raises SyntaxError: did you forget parentheses around the comprehension target?
+
+list_tuple = [(x, x**2) for x in range(6)]
+print(list_tuple)   # Output: [(0, 0), (1, 1), (2, 4), (3, 9), (4, 16), (5, 25)]
+ 
 #--------------------------------------------------------------------------------
 # ⚠️ When Not to Use List Comprehensions
 # Avoid when:
 #   1. The logic is too complex (use a regular loop for clarity).
 #   2. You’re doing side effects (like print(), file I/O) — better use a for loop.
 #--------------------------------------------------------------------------------
+
+''' Dictionary, Set and Generator Expression also supports comprehension '''
+
+# Dictionary Comprehension
+squared_dict = {x: x**2 for x in range(5)}
+# Output: {0: 0, 1: 1, 2: 4, 3: 9, 4: 16}
+
+# With Condition
+even_squared_dict = {x: x**2 for x in range(10) if x % 2 == 0}
+
+# From 2 lists using zip() function
+keys = ['a', 'b', 'c']
+values = [1, 2, 3]
+combined = {k: v for k, v in zip(keys, values)}
+
+#--------------------------------------------------------------------------------
+# Set Comprehension - Removes duplicates and keeps unique elements.
+unique_squares = {x**2 for x in [1, 2, 2, 3]}
+# Output: {1, 4, 9}
+
+# With Condition
+even = {x for x in range(10) if x % 2 == 0}
+
+#--------------------------------------------------------------------------------
+# Generator Expression - Returns a generator (lazy evaluation, saves memory)
+
+squares_gen = (x**2 for x in range(10))      #Use it with next() or in a for loop:
+
+# for val in squares_gen:
+#     print(val)
+
+# using next()
+print(next(squares_gen))    # Output: 0
+print(next(squares_gen))    # Output: 1
+print(next(squares_gen))    # Output: 4
+print(next(squares_gen))    # Output: 9
+print(next(squares_gen))    # Output: 16
+print(next(squares_gen))    # Output: 25 # continues...
+print(next(squares_gen))    # ❌ Raises StopIteration - if tried to get item after printing last item
