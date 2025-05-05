@@ -93,3 +93,32 @@ print(line_count)
 # Reads entire file into memory as a list of lines.
 # Bad for large files: high memory usage, potential MemoryError.
 # Slightly slower due to list creation and memory overhead.
+
+''' File Pointer
+When you open a file in Python, a file pointer is automatically created. 
+It keeps track of where you are in the file (how many bytes from the beginning)
+
+Python’s tell() and seek() file methods are used to manage the file pointer, 
+which tracks your current read/write position inside a file '''
+
+# tell() - Syntax : file.tell()
+
+# Returns the current position of the file pointer in bytes from the beginning of the file.
+# Useful to know where you're reading/writing from.
+
+# seek() – Syntax : file.seek(offset, whence=0)
+# Move File Pointer to a Specific Position
+# | Parameter | Meaning
+# | offset    | Number of bytes to move the pointer
+# | whence    | Reference point:  0 = start of file (default),  1 = current position,  2 = end of file
+
+with open('Python\example.txt', 'r', encoding='utf-8') as file:
+    file.read(10)
+    print(file.tell())          # e.g., 10
+    file.seek(0)                # Move back to the beginning
+    print(file.read(5))         # Re-read the first 5 characters
+
+# ⚠️ Notes:
+# In text mode, tell() may not always return exact character position, 
+# especially with encodings like UTF-8 where characters may take multiple bytes.
+# For precise byte control, use 'rb' or 'wb' (binary modes).
