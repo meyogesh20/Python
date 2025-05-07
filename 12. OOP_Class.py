@@ -1,7 +1,11 @@
-'''🔹 What is a Class? --> A class in Python is a blueprint for creating objects. 
-Objects are instances of classes, and they encapsulate data (attributes) and behavior (methods).
-✅ Each class instance can have attributes attached to it for maintaining its state. Class instances
-can also have methods (defined by its class) for modifying its state.
+'''✅  What is a Class? -->
+1. A class is a blueprint for creating object and it groups state and behavior of object.
+2. Objects are instances of classes. and they encapsulate data (attributes) and behavior (methods).
+3. Python classes are flexible, dynamic, and follow OOP principles like encapsulation, inheritance, and polymorphism.
+4. Python's approach is less strict and more dynamic than C++/Java, allowing rapid development.
+
+✅ Each class instance can have attributes attached to it for maintaining its state. 
+Class instances can also have methods (defined by its class) for modifying its state.
 
 Object Oriented Programming: 
 1. The class inheritance mechanism allows **multiple base classes**
@@ -40,11 +44,3 @@ car1.start()    # Output : India TATA Nexon is starting.
 car2.start()    # Output : German Mercedez Benz is starting.
 
 # When you call a method like car1.start(), Python automatically passes the object car1 as the first argument.
-
-
-
-
-
-
-
-
