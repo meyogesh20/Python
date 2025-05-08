@@ -10,6 +10,11 @@
     2. There is only one copy, and all objects refer to the same value unless overridden.
     3. But if you override it in one object, the new value will be available for that one object only.
     4. Remaining all objects will have the same value of Class Variable
+    
+✅ Python is more flexible and you don't need to declare instance variable in advance
+    1. They are automatically created when the first time you assign them value using
+        a. self.variable = value    # Inside a method
+        b. 
 '''
 class Dog:
 
@@ -43,3 +48,32 @@ print(e.kind)           # e still sees the class variable # Output : 'doggo'
 Dog.kind = 'doggo'      # Change class variable again
 print(d.kind)           # d now has its own kind, so this change does not affect it # Output : 'Burfi'
 print(e.kind)           # e still refers to class variable → sees 'doggo' # Output : 'doggo'
+
+
+#-------------------------------------------------------------------------------
+
+class MyClass:
+    school = 'ABC'
+    
+    def __init__(self, name):
+        self.name = name
+        
+a = MyClass('Yogesh')
+
+print(a.name)               # Output : Yogesh
+print(a.school)             # Output : ABC
+a.college = "RCPIT"     
+print(a.college)            # Output : RCPIT
+
+print(MyClass.school)       # Output : ABC
+# print(MyClass.college)      # Output : AttributeError: type object 'MyClass' has no attribute 'college
+MyClass.college = 'SSVP'    # Creating Class Variable at run time. not necessaryily declared in class definition
+print(MyClass.college)      # Output : SSVP
+
+MyClass.name = 'PQRS'       # Creating Class Variable at run time. not necessaryily declared in class definition
+print(MyClass.name)         # Output : PQRS
+
+# Conclusion : We can create instance as well as class variable at run time, without explicitly declaring them
+# inside the class definition. Becuase Python is more flexible.
+
+#-------------------------------------------------------------------------------
