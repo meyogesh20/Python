@@ -45,3 +45,67 @@ print(p._Person__password)  # Output: secret
 # _age: not really private, but "please don't touch it."
 
 # __password: Python hides it a bit (renames it to _Person__password) so it's harder to mess with.
+
+
+# ✅ Parent class
+class Mapping:
+    def __init__(self, iterable):
+        self.items_list = []         # Public variable: can be accessed from outside
+        self.__update(iterable)      # Call the private method (mangled to _Mapping__update)
+
+    def update(self, iterable):
+        # Public method: meant to add items to the list
+        for item in iterable:
+            self.items_list.append(item)
+
+    __update = update                # Name-mangled private version of update()
+    # Now __update is really _Mapping__update behind the scenes
+
+# ✅ Subclass
+class MappingSubclass(Mapping):
+    def update(self, keys, values):
+        # This overrides the original update() method
+        # Takes two arguments instead of one
+        for item in zip(keys, values):
+            self.items_list.append(item)
+        # Even though update() is overridden, Mapping.__init__() still works
+        # because it uses the private _Mapping__update
+
+
+#✅ Final Output Behavior
+# Test
+m = Mapping([1, 2, 3])
+print(m.items_list)  # [1, 2, 3]
+
+ms = MappingSubclass([])
+ms.update(['a', 'b'], [1, 2])
+print(ms.items_list)  # [('a', 1), ('b', 2)]
+
+# And notice: no errors from __init__ because it still uses the protected version of update().
+
+'''           
+✅ Explanation (Based on Variable Types):
+1. self.items_list - Public Variable
+    This is a normal public variable, accessible from outside the class.
+    You can do obj.items_list without any issues.
+
+2. self.__update() - Private Method via Name Mangling
+    __update is a name-mangled version of the update() method.
+    Python internally renames it to _Mapping__update.
+    This protects it from being accidentally overridden in subclasses.
+
+3. __update = update
+    This line creates a private alias of the original update() method.
+    So inside __init__(), even if a subclass overrides update(), 
+        the original version is still safely called through __update().
+
+4. update() is Overridden
+    This method changes the update() method to accept two arguments, keys and values.
+    However, __init__() in the parent class still works fine, because it doesn’t call
+        this new method — it calls the private alias _Mapping__update.
+        
+🧩 Why This Matters
+    This is a real use case for private variables:
+🔐 It protects the original method from being overridden in subclasses,
+    which could break functionality (like in __init__).
+'''
