@@ -141,3 +141,17 @@ def main():
 # -------------------------------
 if __name__ == "__main__":
     main()
+
+
+
+# ✅ Features Covered
+# |______________________________________________________________________________________________________|
+# | Feature               | Implementation                                                               |
+# | --------------------- | ---------------------------------------------------------------------------- |
+# | Abstraction           | `Employee` is an abstract class with an abstract method `calculate_salary()` |
+# | Inheritance           | `Developer` and `Manager` classes inherit from `Employee`                    |
+# | Polymorphism          | `display_employee()` works with any type of `Employee` subclass              |
+# | Menu-based CLI        | User can add developers or managers interactively                            |
+# | Real-world data entry | Collects name, base salary, and role-specific earnings (bonus/incentives)    |
+# |_______________________|______________________________________________________________________________|
+
